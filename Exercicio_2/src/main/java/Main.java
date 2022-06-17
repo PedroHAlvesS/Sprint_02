@@ -4,6 +4,7 @@ import domain.Filme;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Main {
@@ -14,7 +15,12 @@ public class Main {
         ArrayList<Filme> filmes = new ArrayList<Filme>();
         Connection connection = db.initConnection();
         try (connection) {
-            filmes = FilmeDAO.paginacao(connection, 5, 2);
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("Informe a quantidade de filmes por página: ");
+            int quantidadeFilmes = Integer.parseInt(teclado.nextLine());
+            System.out.println("Informe a página: ");
+            int pagina = Integer.parseInt(teclado.nextLine());
+            filmes = FilmeDAO.paginacao(connection, quantidadeFilmes, pagina);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.getStackTrace();
