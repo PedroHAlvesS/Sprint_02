@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)  {
-        String user = "root";
-        String password = "teamo123";
+        String user = "";
+        String password = "";
         DB db = new DB(user, password);
         ArrayList<Movie> movies = new ArrayList<Movie>();
         Connection connection = db.initConnection();
