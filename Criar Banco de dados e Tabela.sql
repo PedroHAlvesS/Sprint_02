@@ -3,7 +3,7 @@ USE sprint_02;
 
 
 CREATE TABLE `produto` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(150) NOT NULL,
   `descrição` VARCHAR(150) NOT NULL,
   `quantidade` INT NOT NULL,
@@ -13,7 +13,7 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE `filme` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(150) NOT NULL,
   `descrição` VARCHAR(150) NOT NULL,
   `ano` INT NOT NULL,
