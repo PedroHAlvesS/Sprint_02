@@ -1,6 +1,6 @@
 import dao.DB;
-import dao.FilmeDAO;
-import domain.Filme;
+import dao.MovieDAO;
+import domain.Movie;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,24 +9,24 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)  {
-        String user = "";
-        String password = "";
+        String user = "root";
+        String password = "teamo123";
         DB db = new DB(user, password);
-        ArrayList<Filme> filmes = new ArrayList<Filme>();
+        ArrayList<Movie> movies = new ArrayList<Movie>();
         Connection connection = db.initConnection();
         try (connection) {
-            Scanner teclado = new Scanner(System.in);
-            System.out.println("Informe a quantidade de filmes por página: ");
-            int quantidadeFilmes = Integer.parseInt(teclado.nextLine());
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("Informe a quantidade de movies por página: ");
+            int moviesByPage = Integer.parseInt(keyboard.nextLine());
             System.out.println("Informe a página: ");
-            int pagina = Integer.parseInt(teclado.nextLine());
-            filmes = FilmeDAO.paginacao(connection, quantidadeFilmes, pagina);
+            int page = Integer.parseInt(keyboard.nextLine());
+            movies = MovieDAO.pagination(connection, moviesByPage, page);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.getStackTrace();
         }
-        for (int i = 0; i < 10; i++) {
-            filmes.get(i).mostrarFilme();
+        for (Movie movie : movies) {
+            movie.showMovie();
         }
 
     }
