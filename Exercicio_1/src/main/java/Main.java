@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
+
+    public static String user = "root";
+    public static String password = "teamo123";
     public static void main(String[] args) {
         int option = -1;
         Scanner keyboard = new Scanner(System.in);
@@ -30,9 +33,8 @@ public class Main {
             if (option == 0) {
                 break;
             }
-            String user = "";
-            String password = "";
-            DB db = new DB(user, password);
+
+            DB db = new DB(Main.user, Main.password);
             Connection connection = db.initConnection();
             if (option == 1) {
                 option1(connection);
@@ -65,7 +67,7 @@ public class Main {
 
     public static void option2(Connection connection) {
         try (connection){
-            ProductDAO.updateProductOnPosition(connection, 1);
+            ProdutoDAO.updateFirstProduct(connection, 1);
         } catch(Exception e){
             System.out.println("Ocorreu um erro! " + e.getMessage());
             e.getCause();
@@ -75,7 +77,7 @@ public class Main {
 
     public static void option3(Connection connection) {
         try (connection){
-            ProductDAO.deleteProductOnPosition(connection, 2);
+            ProdutoDAO.deleteSecondProduct(connection, 2);
         } catch(Exception e){
             System.out.println("Ocorreu um erro! " + e.getMessage());
             e.getCause();

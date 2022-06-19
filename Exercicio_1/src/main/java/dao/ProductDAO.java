@@ -24,7 +24,10 @@ public class ProductDAO {
     }
 
     private static int getProdutoFilterBy(Connection connection, int productPosition) {
-        String sql = "SELECT * FROM produto ORDER BY ID ASC";
+        String sql = "SELECT * FROM produto ORDER BY ID DESC";
+        if (productPosition == 1) {
+            productPosition = 3;
+        }
         int id = 0;
         int controle = 1;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -44,8 +47,8 @@ public class ProductDAO {
         return id;
     }
 
-    public static void updateProductOnPosition(Connection connection, int productPosition) {
-        int id = ProductDAO.getProdutoFilterBy(connection, productPosition);
+    public static void updateFirstProduct(Connection connection, int produtoPosicao) {
+        int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
         String sql = "UPDATE produto SET quantidade=999, preco=9999.99 WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
@@ -54,8 +57,8 @@ public class ProductDAO {
         }
     }
 
-    public static void deleteProductOnPosition(Connection connection, int productPosition) {
-        int id = ProductDAO.getProdutoFilterBy(connection, productPosition);
+    public static void deleteSecondProduct(Connection connection, int produtoPosicao) {
+        int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
         String sql = "DELETE FROM produto WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
