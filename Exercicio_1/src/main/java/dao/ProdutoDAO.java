@@ -24,8 +24,16 @@ public class ProdutoDAO {
         }
     }
 
+<<<<<<< Updated upstream:Exercicio_1/src/main/java/dao/ProdutoDAO.java
     private static int getProdutoFilterBy(Connection connection, int produtoPosicao) {
         String sql = "SELECT * FROM produto ORDER BY ID ASC";
+=======
+    private static int getProdutoFilterBy(Connection connection, int productPosition) {
+        String sql = "SELECT * FROM produto ORDER BY ID DESC";
+        if (productPosition == 1) {
+            productPosition = 3;
+        }
+>>>>>>> Stashed changes:Exercicio_1/src/main/java/dao/ProductDAO.java
         int id = 0;
         int controle = 1;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){

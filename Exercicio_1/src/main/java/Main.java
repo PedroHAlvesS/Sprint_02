@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
+
+    public static String user = "root";
+    public static String password = "teamo123";
     public static void main(String[] args) {
         int opcao = -1;
         Scanner teclado = new Scanner(System.in);
@@ -30,9 +33,8 @@ public class Main {
             if (opcao == 0) {
                 break;
             }
-            String user = "";
-            String password = "";
-            DB db = new DB(user, password);
+
+            DB db = new DB(Main.user, Main.password);
             Connection connection = db.initConnection();
             if (opcao == 1) {
                 opcao1(connection);
