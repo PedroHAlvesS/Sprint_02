@@ -1,6 +1,6 @@
 package dao;
 
-import domain.Produto;
+import domain.Product;
 import exceptions.MineExceptions;
 
 import java.sql.Connection;
@@ -8,15 +8,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProdutoDAO {
+public class ProductDAO {
 
-    public static void inserirNaBase(Connection connection, Produto produto) {
+    public static void insertIntoDB(Connection connection, Product product) {
         String sql = "INSERT INTO produto (nome, descrição, quantidade, preco) values (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setString(1, produto.getNome());
-            preparedStatement.setString(2, produto.getDescricao());
-            preparedStatement.setInt(3, produto.getQuantidade());
-            preparedStatement.setDouble(4, produto.getPreco());
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getDescription());
+            preparedStatement.setInt(3, product.getAmount());
+            preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new MineExceptions(e.getMessage());
