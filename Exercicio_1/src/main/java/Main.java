@@ -67,7 +67,7 @@ public class Main {
 
     public static void opcao2(Connection connection) {
         try (connection){
-            ProdutoDAO.alterarProdutoDaPosicao(connection, 1);
+            ProdutoDAO.updateFirstProduct(connection, 1);
         } catch(Exception e){
             System.out.println("Ocorreu um erro! " + e.getMessage());
             e.getCause();
@@ -77,7 +77,7 @@ public class Main {
 
     public static void opcao3(Connection connection) {
         try (connection){
-            ProdutoDAO.deletarProdutoDaPosicao(connection, 2);
+            ProdutoDAO.deleteSecondProduct(connection, 2);
         } catch(Exception e){
             System.out.println("Ocorreu um erro! " + e.getMessage());
             e.getCause();

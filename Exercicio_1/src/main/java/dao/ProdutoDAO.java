@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ProdutoDAO {
 
@@ -24,23 +23,18 @@ public class ProdutoDAO {
         }
     }
 
-<<<<<<< Updated upstream:Exercicio_1/src/main/java/dao/ProdutoDAO.java
-    private static int getProdutoFilterBy(Connection connection, int produtoPosicao) {
-        String sql = "SELECT * FROM produto ORDER BY ID ASC";
-=======
     private static int getProdutoFilterBy(Connection connection, int productPosition) {
         String sql = "SELECT * FROM produto ORDER BY ID DESC";
         if (productPosition == 1) {
             productPosition = 3;
         }
->>>>>>> Stashed changes:Exercicio_1/src/main/java/dao/ProductDAO.java
         int id = 0;
         int controle = 1;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
             try (ResultSet rst = preparedStatement.getResultSet() ){
                 while (rst.next()) {
-                    if (controle == produtoPosicao) {
+                    if (controle == productPosition) {
                         id = rst.getInt("ID");
                         break;
                     }
@@ -53,7 +47,7 @@ public class ProdutoDAO {
         return id;
     }
 
-    public static void alterarProdutoDaPosicao(Connection connection, int produtoPosicao) {
+    public static void updateFirstProduct(Connection connection, int produtoPosicao) {
         int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
         String sql = "UPDATE produto SET quantidade=999, preco=9999.99 WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -63,7 +57,7 @@ public class ProdutoDAO {
         }
     }
 
-    public static void deletarProdutoDaPosicao(Connection connection, int produtoPosicao) {
+    public static void deleteSecondProduct(Connection connection, int produtoPosicao) {
         int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
         String sql = "DELETE FROM produto WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
