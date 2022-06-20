@@ -32,16 +32,16 @@ public class ProductDAO {
             productPosition = 3;
         }
         int id = 0;
-        int controle = 1;
+        int control = 1;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
             try (ResultSet rst = preparedStatement.getResultSet() ){
                 while (rst.next()) {
-                    if (controle == productPosition) {
+                    if (control == productPosition) {
                         id = rst.getInt("ID");
                         break;
                     }
-                    controle++;
+                    control++;
                 }
             }
         } catch (SQLException e) {
