@@ -28,7 +28,7 @@ INSERT INTO filme(nome, descrição, ano) VALUES ('A volta dos que não foram', 
 INSERT INTO filme(nome, descrição, ano) VALUES ('Viagem ao Centro da Terra', '6', 2008);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Monty python em busca do cálice sagrado', '7', 1975);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Ponte para terabítia', '8', 2007);
-INSERT INTO filme(nome, descrição, ano) VALUES ('As Crônicas de Nárnia O Leão, A Feiticeira e o Guarda Roupa', '9', 2005);
+INSERT INTO filme(nome, descrição, ano) VALUES ('As Crônicas de Nárnia O Leão - A Feiticeira e o Guarda Roupa', '9', 2005);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Incendio na caixa d'água', '10', 2039);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Kono Subarashii Sekai ni Shukufuku o!', '11', 2019);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Irmão Urso', '12', 2003);
