@@ -14,6 +14,6 @@ public class Movie {
     }
 
     public void showMovie() {
-        System.out.println("( " + this.id + " ) Movie: " + this.name + "| " + this.description + "| ano: " + this.year);
+        System.out.println("( " + this.id + " ) Filme: " + this.name + "| " + this.description + "| ano: " + this.year);
     }
 }
