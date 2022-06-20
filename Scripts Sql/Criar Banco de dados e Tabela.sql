@@ -21,8 +21,8 @@ CREATE TABLE `filme` (
 ENGINE = InnoDB;
 
 INSERT INTO filme(nome, descrição, ano) VALUES ('Blade Runner 2049', '1', 2017);
-INSERT INTO filme(nome, descrição, ano) VALUES ('The Batman', '2', 2022);
-INSERT INTO filme(nome, descrição, ano) VALUES ('Homem Aranha 3', '3', 2007);
+INSERT INTO filme(nome, descrição, ano) VALUES ('Doutor Estranho', '2', 2016);
+INSERT INTO filme(nome, descrição, ano) VALUES ('Interestelar', '3', 2014);
 INSERT INTO filme(nome, descrição, ano) VALUES ('As traças do rei careca', '4', 2100);
 INSERT INTO filme(nome, descrição, ano) VALUES ('A volta dos que não foram', '5', 2050);
 INSERT INTO filme(nome, descrição, ano) VALUES ('Viagem ao Centro da Terra', '6', 2008);
