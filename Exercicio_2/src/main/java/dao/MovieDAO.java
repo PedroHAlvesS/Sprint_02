@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 public class MovieDAO {
     public static ArrayList<Movie> pagination(Connection connection, int moviesByPage, int page){
-        int offset = 0;
+        int offset = (page - 1) * moviesByPage;
         int id;
         String name;
         String description;
         int year;
 
         ArrayList<Movie> movies = new ArrayList<Movie>();
-        offset = (page - 1) * moviesByPage;
+
 
         String sql = "SELECT * FROM filme order by ID ASC LIMIT " + moviesByPage + " OFFSET "+ offset;
 
