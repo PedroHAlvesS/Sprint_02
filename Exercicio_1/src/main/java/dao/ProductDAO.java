@@ -1,29 +1,32 @@
 package dao;
 
 import domain.Product;
-import exceptions.MineExceptions;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ProductDAO {
 
     public static void insertIntoDB(Connection connection, Product product) {
         String sql = "INSERT INTO produto (nome, descrição, quantidade, preco) values (?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             preparedStatement.setString(1, product.getName());
             preparedStatement.setString(2, product.getDescription());
             preparedStatement.setInt(3, product.getAmount());
             preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.execute();
+            try(ResultSet rst = preparedStatement.getGeneratedKeys()) {
+                while(rst.next()) {
+                    System.out.println("=====");
+                    System.out.println("Adicionado o produto id: " + rst.getInt(1));
+                    System.out.println("=====");
+                }
+            }
         } catch (SQLException e) {
-            throw new MineExceptions(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
-    private static int getProdutoFilterBy(Connection connection, int productPosition) {
+    private static int getProductIDFilterBy(Connection connection, int productPosition) {
         String sql = "SELECT * FROM produto ORDER BY ID DESC";
         if (productPosition == 1) {
             productPosition = 3;
@@ -42,28 +45,34 @@ public class ProductDAO {
                 }
             }
         } catch (SQLException e) {
-            throw new MineExceptions(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
         return id;
     }
 
     public static void updateFirstProduct(Connection connection, int produtoPosicao) {
-        int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
-        String sql = "UPDATE produto SET quantidade=999, preco=9999.99 WHERE ID =" + id;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        int id = ProductDAO.getProductIDFilterBy(connection, produtoPosicao);
+        String sql = "UPDATE produto SET nome = 'YYY--Jequiti--YYY' WHERE ID =" + id;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.execute();
+            System.out.println("====");
+            System.out.println("Produto de id " + id + " atualizado!");
+            System.out.println("====");
         } catch (SQLException e) {
-            throw new MineExceptions(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
     public static void deleteSecondProduct(Connection connection, int produtoPosicao) {
-        int id = ProdutoDAO.getProdutoFilterBy(connection, produtoPosicao);
+        int id = ProductDAO.getProductIDFilterBy(connection, produtoPosicao);
         String sql = "DELETE FROM produto WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
+            System.out.println("====");
+            System.out.println("Produto de id " + id + " deletado!");
+            System.out.println("====");
         } catch (SQLException e) {
-            throw new MineExceptions(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
