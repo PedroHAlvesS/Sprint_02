@@ -15,11 +15,11 @@ public class ProductDAO {
             preparedStatement.setDouble(4, product.getPrice());
             preparedStatement.execute();
             try(ResultSet rst = preparedStatement.getGeneratedKeys()) {
+                System.out.println("=====");
                 while(rst.next()) {
-                    System.out.println("=====");
                     System.out.println("Adicionado o produto id: " + rst.getInt(1));
-                    System.out.println("=====");
                 }
+                System.out.println("=====");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
@@ -55,9 +55,17 @@ public class ProductDAO {
         String sql = "UPDATE produto SET nome = 'YYY--Jequiti--YYY' WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.execute();
-            System.out.println("====");
-            System.out.println("Produto de id " + id + " atualizado!");
-            System.out.println("====");
+            try (ResultSet rst = preparedStatement.getResultSet()) {
+                if (rst.getRow() == 0) {
+                    System.out.println("Não foi atualizado nenhum produto!");
+                } else {
+                    System.out.println("====");
+                    System.out.println("Produto de id " + id + " atualizado!");
+                    System.out.println("====");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -68,9 +76,17 @@ public class ProductDAO {
         String sql = "DELETE FROM produto WHERE ID =" + id;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.execute();
-            System.out.println("====");
-            System.out.println("Produto de id " + id + " deletado!");
-            System.out.println("====");
+            try (ResultSet rst = preparedStatement.getResultSet()) {
+                if (rst.getRow() == 0) {
+                    System.out.println("Não foi deletado nenhum produto!");
+                } else {
+                    System.out.println("====");
+                    System.out.println("Produto de id " + id + " deletado!");
+                    System.out.println("====");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -4,7 +4,6 @@ import services.Menu;
 import services.RandomProducts;
 
 import java.sql.Connection;
-import java.util.Scanner;
 
 public class Main {
 
