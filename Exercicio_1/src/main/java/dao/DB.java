@@ -1,6 +1,6 @@
 package dao;
 
-import exceptions.MineExceptions;
+import exceptions.NumberOutOfRange;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import javax.sql.DataSource;
@@ -24,7 +24,7 @@ public class DB  {
         try {
             return this.dataSource.getConnection();
         } catch (SQLException e) {
-            throw new MineExceptions(e.getMessage());
+            throw new NumberOutOfRange(e.getMessage());
         }
     }
 }
